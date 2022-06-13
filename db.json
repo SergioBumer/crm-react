@@ -1,0 +1,52 @@
+{
+  "clientes": [
+    {
+      "nombre": "erte",
+      "empresa": "rte",
+      "email": "hola@gol.com",
+      "telefono": "",
+      "notas": "Cliente que busca",
+      "id": 1
+    },
+    {
+      "nombre": "ertesdasd",
+      "empresa": "rte",
+      "email": "hola@gol.com",
+      "telefono": "",
+      "notas": "Cliente que busca",
+      "id": 2
+    },
+    {
+      "nombre": "ertesdasdss",
+      "empresa": "sssrte",
+      "email": "hola@gol.com",
+      "telefono": "",
+      "notas": "Cliente que busca",
+      "id": 3
+    },
+    {
+      "nombre": "Sergio",
+      "empresa": "Empresa de Sergio",
+      "email": "sergio@sdc.com",
+      "telefono": "3203213221",
+      "notas": "asdasdasd",
+      "id": 4
+    },
+    {
+      "nombre": "Daniel",
+      "empresa": "Empresa de Daniel",
+      "email": "Daniel@sdc.com",
+      "telefono": "3203213221",
+      "notas": "asdasdasd",
+      "id": 5
+    },
+    {
+      "nombre": "Transporte",
+      "empresa": "Empresa de Sergio",
+      "email": "hola@gol.com",
+      "telefono": "3203213221",
+      "notas": "",
+      "id": 6
+    }
+  ]
+}

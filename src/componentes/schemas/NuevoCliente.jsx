@@ -10,8 +10,7 @@ const nuevoClienteSchema = yup.object().shape({
   email: yup
     .string()
     .email("El Email no es válido.")
-    .min(3, "El email es muy corto")
-    .max(20, "El email es muy largo")
+    .min(5, "El email es muy corto")
     .required("El email del Cliente es Obligatorio"),
   telefono: yup
     .number()
