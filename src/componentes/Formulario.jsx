@@ -4,21 +4,25 @@ import { useNavigate } from "react-router-dom";
 import Alerta from "../componentes/Alerta";
 import nuevoClienteSchema from "../componentes/schemas/NuevoCliente";
 
-const Formulario = () => {
+const Formulario = ({ cliente }) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     try {
-      const url = `http://localhost:4000/clientes`;
+      let url = `http://localhost:4000/clientes`;
 
-      const respuesta = await fetch(url, {
+      let options = {
         method: "POST",
         body: JSON.stringify(values),
         headers: {
           "Content-Type": "application/json",
         },
-      });
-
+      };
+      if (Object.keys(options).length > 0) {
+        url += `/${cliente.id}`;
+        options.method = "PUT";
+      }
+      const respuesta = await fetch(url, options);
       const resultado = await respuesta.json();
       console.log(resultado);
       navigate("/clientes");
@@ -26,20 +30,22 @@ const Formulario = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto">
       <h1 className="text-gray-600 font-bold text-xl uppercase text-center">
-        Agregar Cliente
+        {cliente ? "Editar" : "Agregar"} Cliente
       </h1>
 
       <Formik
         initialValues={{
-          nombre: "",
-          empresa: "",
-          email: "",
-          telefono: "",
-          notas: "",
+          nombre: cliente?.nombre ?? "",
+          empresa: cliente?.empresa ?? "",
+          email: cliente?.email ?? "",
+          telefono: cliente?.telefono ?? "",
+          notas: cliente?.notas ?? "",
         }}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           await handleSubmit(values);
 
@@ -125,7 +131,7 @@ const Formulario = () => {
               </div>
               <input
                 type="submit"
-                value="Agregar Cliente"
+                value={cliente ? "Editar Cliente" : "Agregar Cliente"}
                 className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"
               />
             </Form>
@@ -134,6 +140,10 @@ const Formulario = () => {
       </Formik>
     </div>
   );
+};
+
+Formulario.defaultProps = {
+  cliente: {},
 };
 
 export default Formulario;
